@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://tvc7fugx8l07"]
+
+[ext_resource type="Texture2D" uid="uid://ccr4rjhsu5dsu" path="res://ground.png" id="1_scvit"]
+[ext_resource type="Texture2D" uid="uid://mxkwlxkqej5f" path="res://bruh.png" id="2_wk0og"]
+[ext_resource type="Script" path="res://Player.gd" id="3_bg0gn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a4tvf"]
+shading_mode = 0
+albedo_texture = ExtResource("1_scvit")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r14gv"]
+material = SubResource("StandardMaterial3D_a4tvf")
+
+[sub_resource type="Environment" id="Environment_744ag"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_r14gv")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_744ag")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 1.31888, 1.31888)
+size = 1.784
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+size = Vector2i(40, 40)
+
+[node name="Node2D" type="Node2D" parent="SubViewportContainer/SubViewport"]
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/Node2D"]
+texture_filter = 1
+texture = ExtResource("2_wk0og")
+script = ExtResource("3_bg0gn")
